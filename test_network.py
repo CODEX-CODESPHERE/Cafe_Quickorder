@@ -110,6 +110,17 @@ def main():
         assert "Revenue: Rs.0" in one_shot(rport, "ADMIN|1234|REPORT")
         assert "Availability updated" in one_shot(rport, "ADMIN|1234|AVAIL|2|0")
         assert "Veg Burger" in one_shot(rport, "MENU")
+        added = one_shot(rport, "ADMIN|1234|ADD|Paneer Roll|110")
+        assert added.startswith("OK|Food item added with ID 7"), added
+        assert "Paneer Roll" in one_shot(rport, "MENU")
+        edited = one_shot(rport, "ADMIN|1234|EDIT|7|Cheese Roll|125")
+        assert edited.startswith("OK|Food item updated"), edited
+        edited_menu = one_shot(rport, "MENU")
+        assert "Cheese Roll" in edited_menu and "Rs.125" in edited_menu, edited_menu
+        removed = one_shot(rport, "ADMIN|1234|REMOVE|7")
+        assert removed.startswith("OK|Food item removed"), removed
+        assert "Cheese Roll" not in one_shot(rport, "MENU")
+        assert one_shot(rport, "ADMIN|1234|ADD|Invalid Price|0").startswith("ERR|")
         assert one_shot(rport, f"PLACE|{student_id}|Test Pickup|2:1").startswith("ERR|")
 
         # The menu and cancelled order should remain after restarting the restaurant server.
