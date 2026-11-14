@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#17251f">
+<title>Cafe QuickOrder</title>
+<style>
+:root{--ink:#17251f;--muted:#6c7771;--paper:#f6f5ef;--card:#fffefa;--line:#e4e5dc;--green:#24634b;--green2:#174c37;--gold:#e7b75a;--red:#b33d3d;--soft:#eaf2ec;--shadow:0 14px 34px rgba(23,37,31,.08)}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:15px;line-height:1.5}button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}.shell{max-width:1180px;margin:auto;padding:0 24px}.topbar{background:var(--ink);color:#fffefa}.topbar-inner{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:12px;color:inherit;text-decoration:none}.brand-mark{width:42px;height:42px;display:grid;place-items:center;background:var(--gold);border-radius:13px;color:var(--ink);font-size:23px}.brand-name{font-size:18px;font-weight:800;letter-spacing:-.4px}.brand-sub{font-size:11px;letter-spacing:1.8px;color:#bdc9c1;text-transform:uppercase}.top-actions{display:flex;align-items:center;gap:9px}.main{padding-top:32px;padding-bottom:56px}.eyebrow{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--green)}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(30px,4vw,48px);line-height:1.06;letter-spacing:-1.6px;margin:8px 0 12px}h2{font-size:25px;letter-spacing:-.7px;margin-bottom:6px}h3{font-size:16px;margin-bottom:5px}.muted{color:var(--muted)}.small{font-size:12px}.hero{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:26px}.hero p{max-width:650px;color:var(--muted);margin-bottom:0}.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:99px;background:#e7eee8;color:var(--green2);font-size:12px;font-weight:800}.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:10px 14px;border-radius:10px;font-weight:750;transition:transform .12s,background .12s}.btn:hover{transform:translateY(-1px)}.btn-primary{background:var(--green);color:white;border-color:var(--green)}.btn-primary:hover{background:var(--green2)}.btn-dark{background:var(--ink);color:white;border-color:var(--ink)}.btn-danger{color:var(--red);border-color:#efc9c9;background:#fff8f8}.btn-sm{padding:6px 9px;font-size:12px;border-radius:8px}.btn-plain{background:transparent;color:inherit;border-color:rgba(255,255,255,.2)}.btn-row{display:flex;gap:8px;flex-wrap:wrap}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow)}.auth-wrap{max-width:480px;margin:24px auto}.auth-head{text-align:center;margin-bottom:20px}.auth-head .brand-mark{margin:0 auto 13px;width:56px;height:56px;font-size:28px}.switcher{display:grid;grid-template-columns:1fr 1fr;padding:4px;background:#f0f0e8;border-radius:12px;gap:4px;margin:18px 0}.switcher button{border:0;background:transparent;border-radius:9px;padding:10px;color:var(--muted);font-weight:800}.switcher button.active{background:white;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.06)}.form-grid{display:grid;gap:13px}.field{display:grid;gap:6px}.field label{font-size:12px;font-weight:800;color:#4e5b53}.field input,.field select,.search{width:100%;padding:11px 12px;border:1px solid #d9ddd4;background:white;border-radius:10px;color:var(--ink);outline:none}.field input:focus,.search:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(36,99,75,.12)}.form-note{font-size:12px;color:var(--muted);margin:14px 0 0}.notice{margin-top:14px;border-radius:10px;padding:10px 12px;background:#fff4dd;color:#76541b;font-size:12px}.role-hint{padding:12px;border-radius:12px;background:var(--soft);font-size:12px;color:var(--green2);margin-bottom:15px}.layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:22px;align-items:start}.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:15px}.menu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.food-card{border:1px solid var(--line);border-radius:16px;padding:18px;background:var(--card);display:flex;flex-direction:column;min-height:190px}.food-top{display:flex;align-items:start;justify-content:space-between;gap:10px}.food-emoji{width:42px;height:42px;border-radius:13px;background:#f4ecd9;display:grid;place-items:center;font-size:23px}.price{font-size:20px;font-weight:850;white-space:nowrap}.food-card p{font-size:12px;color:var(--muted);margin:9px 0 14px}.food-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto}.unavailable{opacity:.58}.cart-card{position:sticky;top:16px}.cart-items{display:grid;gap:13px;margin:16px 0}.cart-row{display:grid;grid-template-columns:1fr auto;gap:10px;padding-bottom:13px;border-bottom:1px solid var(--line)}.qty{display:flex;align-items:center;gap:8px}.qty button{width:27px;height:27px;border-radius:8px;border:1px solid var(--line);background:white;font-weight:900}.cart-total{border-top:1px solid var(--line);padding-top:15px;margin-top:15px}.total-line{display:flex;justify-content:space-between;gap:10px;margin:7px 0}.total-line.big{font-size:19px;font-weight:900}.tabs{display:flex;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:23px;padding-bottom:12px}.tab{padding:9px 13px;border-radius:10px;border:1px solid transparent;background:transparent;color:var(--muted);font-weight:800}.tab.active{color:var(--green2);background:var(--soft);border-color:#d2e2d6}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:20px 0}.stat{padding:17px;background:var(--card);border:1px solid var(--line);border-radius:15px}.stat-label{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:800}.stat-value{font-size:26px;font-weight:900;letter-spacing:-.8px;margin:7px 0 0}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:13px;background:white}table{border-collapse:collapse;width:100%;min-width:650px;text-align:left}th,td{padding:13px 14px;border-bottom:1px solid #edf0e9;vertical-align:middle}th{font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);background:#fafaf6}td{font-size:13px}tr:last-child td{border-bottom:0}.status{display:inline-flex;padding:4px 8px;border-radius:99px;font-size:11px;font-weight:900;background:#e4f4e8;color:#22633e}.status.cancelled{background:#f9e8e8;color:#a02f2f}.status.off{background:#eee;color:#626b64}.empty{padding:34px 18px;text-align:center;color:var(--muted);border:1px dashed #d9ded4;border-radius:14px;background:rgba(255,255,255,.5)}.empty-icon{font-size:28px;margin-bottom:8px}.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(270px,.75fr);gap:18px;align-items:start}.inline-form{display:grid;grid-template-columns:1.4fr .7fr auto;gap:9px;align-items:end}.menu-admin-list{display:grid;gap:9px}.admin-menu-row{display:grid;grid-template-columns:1fr auto;gap:13px;align-items:center;padding:13px;border:1px solid var(--line);border-radius:12px}.footer{text-align:center;padding:22px 0 32px;font-size:12px;color:var(--muted)}.toast{position:fixed;right:22px;bottom:22px;z-index:20;max-width:min(420px,calc(100% - 44px));padding:13px 16px;border-radius:12px;background:var(--ink);color:white;box-shadow:var(--shadow);display:none}.toast.show{display:block;animation:pop .2s ease-out}@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}.demo-banner{margin:0 0 20px;padding:12px 15px;border-radius:12px;background:#fff1d3;border:1px solid #eed8a6;color:#715522;font-size:12px}.user-badge{font-size:12px;color:#d1ddd5}.hidden{display:none!important}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.cart-card{position:static}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.split{grid-template-columns:1fr}}@media(max-width:600px){.shell{padding:0 15px}.topbar-inner{min-height:68px}.brand-name{font-size:15px}.brand-sub{font-size:9px}.hero{display:block}.hero .pill{margin-top:14px}.card{padding:17px}.menu-grid{grid-template-columns:1fr}.stats{gap:9px}.stat{padding:13px}.stat-value{font-size:22px}.inline-form{grid-template-columns:1fr}.top-actions .user-badge{display:none}.main{padding-top:22px}.auth-wrap{margin-top:8px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+ <div class="shell topbar-inner">
+  <a class="brand" href="./" aria-label="Cafe QuickOrder home"><span class="brand-mark">☕</span><span><span class="brand-name">Cafe QuickOrder</span><br><span class="brand-sub">Fresh food · Fast orders</span></span></a>
+  <div class="top-actions" id="top-actions"></div>
+ </div>
+</header>
+<main class="shell main" id="app" aria-live="polite"></main>
+<footer class="shell footer">Cafe QuickOrder · Browser demo · No payments are processed</footer>
+<div class="toast" id="toast" role="status"></div>
+<script>
+(function(){
+"use strict";
+var STORAGE_KEY="cafeQuickOrderBrowser_v1";
+var DEFAULT_MENU=[
+ {id:1,name:"Sandwich",price:60,available:true,emoji:"🥪",description:"Toasted and freshly made"},
+ {id:2,name:"Veg Burger",price:80,available:true,emoji:"🍔",description:"Loaded veggie patty"},
+ {id:3,name:"Cold Coffee",price:70,available:true,emoji:"🥤",description:"Chilled cafe-style coffee"},
+ {id:4,name:"Maggi",price:50,available:true,emoji:"🍜",description:"Warm and comforting noodles"},
+ {id:5,name:"French Fries",price:65,available:true,emoji:"🍟",description:"Crispy golden fries"},
+ {id:6,name:"Masala Dosa",price:90,available:true,emoji:"🥞",description:"Crisp dosa with masala"}
+];
+var state=loadState();
+var session=null;
+var role="student";
+var authMode="login";
+var studentPage="menu";
+var adminPage="overview";
+var cart={};
+var editItemId=null;
+var toastTimer=null;
+var app=document.getElementById("app");
+function loadState(){
+ try{
+  var raw=localStorage.getItem(STORAGE_KEY);
+  if(!raw)return {menu:DEFAULT_MENU.slice(),users:{},orders:[],nextOrderId:1001};
+  var parsed=JSON.parse(raw);
+  if(!parsed||!Array.isArray(parsed.menu)||!parsed.users||!Array.isArray(parsed.orders))throw new Error("Invalid saved data");
+  if(typeof parsed.nextOrderId!=="number")parsed.nextOrderId=1001;
+  return parsed;
+ }catch(e){return {menu:DEFAULT_MENU.slice(),users:{},orders:[],nextOrderId:1001};}
+}
+function saveState(){
+ try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));return true;}
+ catch(e){notify("The browser could not save data. Check your browser storage settings.");return false;}
+}
+function escapeHtml(value){
+ return String(value==null?"":value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+}
+function money(amount){return "₹"+Number(amount||0).toLocaleString("en-IN");}
+function notify(message){
+ var node=document.getElementById("toast");node.textContent=message;node.classList.add("show");
+ if(toastTimer)clearTimeout(toastTimer);toastTimer=setTimeout(function(){node.classList.remove("show");},3200);
+}
+function currentStudent(){return session&&session.role==="student"?state.users[session.id]:null;}
+function setTopbar(){
+ var node=document.getElementById("top-actions");
+ if(!session){node.innerHTML='<span class="user-badge">BROWSER DEMO</span>';return;}
+ node.innerHTML='<span class="user-badge">'+escapeHtml(session.role==="admin"?"Restaurant Admin":session.name)+'</span><button class="btn btn-plain btn-sm" data-action="logout">Log out</button>';
+}
+function render(){
+ setTopbar();
+ if(!session)renderAuth();
+ else if(session.role==="student")renderStudent();
+ else renderAdmin();
+}
+function renderAuth(){
+ app.innerHTML=
+ '<div class="auth-wrap"><div class="auth-head"><div class="brand-mark">☕</div><div class="eyebrow">Welcome to the cafe</div><h1>Good food, less waiting.</h1><p class="muted">Sign in to order your favourites or manage your restaurant menu.</p></div>'+
+ '<div class="card"><div class="switcher"><button data-action="switch-role" data-role="student" class="'+(role==="student"?"active":"")+'">Student</button><button data-action="switch-role" data-role="admin" class="'+(role==="admin"?"active":"")+'">Restaurant admin</button></div>'+
+ (role==="student"?renderStudentAuthForm():renderAdminAuthForm())+
+ '<div class="notice"><strong>Demo note:</strong> data is saved only in this browser on this device. It is not shared between different users or devices.</div></div></div>';
+}
+function renderStudentAuthForm(){
+ if(authMode==="register")return '<div class="role-hint">Create a student account to place and track orders.</div><form id="register-form" class="form-grid"><div class="field"><label for="reg-id">Student ID</label><input id="reg-id" name="id" autocomplete="username" required maxlength="40" placeholder="e.g. STU102"></div><div class="field"><label for="reg-name">Full name</label><input id="reg-name" name="name" autocomplete="name" required maxlength="70" placeholder="Your name"></div><div class="field"><label for="reg-password">Password (at least 4 characters)</label><input id="reg-password" name="password" type="password" autocomplete="new-password" required minlength="4" maxlength="100"></div><button class="btn btn-primary" type="submit">Create account</button></form><p class="form-note">Already registered? <button class="btn btn-sm" data-action="auth-mode" data-mode="login">Sign in</button></p>';
+ return '<div class="role-hint">Sign in to view the menu, place an order, and track your orders.</div><form id="login-form" class="form-grid"><div class="field"><label for="login-id">Student ID</label><input id="login-id" name="id" autocomplete="username" required maxlength="40" placeholder="Your student ID"></div><div class="field"><label for="login-password">Password</label><input id="login-password" name="password" type="password" autocomplete="current-password" required maxlength="100"></div><button class="btn btn-primary" type="submit">Sign in</button></form><p class="form-note">New here? <button class="btn btn-sm" data-action="auth-mode" data-mode="register">Create account</button></p>';
+}
+function renderAdminAuthForm(){
+ return '<div class="role-hint">Manage the food menu, availability, orders and sales summary.</div><form id="admin-login-form" class="form-grid"><div class="field"><label for="admin-pin">Admin PIN</label><input id="admin-pin" name="pin" type="password" autocomplete="current-password" required maxlength="32" placeholder="Enter restaurant PIN"></div><button class="btn btn-primary" type="submit">Open restaurant dashboard</button></form><p class="form-note">Demo PIN: <strong>1234</strong>. Change it in the web app source before using this for anything other than a demo.</p>';
+}
+function renderStudent(){
+ var student=currentStudent();
+ if(!student){session=null;renderAuth();return;}
+ var body=studentPage==="orders"?renderStudentOrders():renderStudentMenu();
+ app.innerHTML='<div class="hero"><div><div class="eyebrow">Student ordering</div><h1>Hello, '+escapeHtml(student.name.split(" ")[0])+' 👋</h1><p>Pick your favourites, check your bill, and keep an eye on your orders from one place.</p></div><span class="pill">● Open for orders</span></div>'+
+ '<div class="demo-banner"><strong>Browser demo:</strong> your account and orders stay in this browser only. This is not connected to the C++ TCP servers or a shared online database.</div>'+
+ '<div class="tabs"><button class="tab '+(studentPage==="menu"?"active":"")+'" data-action="student-page" data-page="menu">🍽 Food menu</button><button class="tab '+(studentPage==="orders"?"active":"")+'" data-action="student-page" data-page="orders">▤ My orders ('+state.orders.filter(function(o){return o.studentId===session.id;}).length+')</button></div>'+body;
+}
+function renderStudentMenu(){
+ var q=Object.keys(cart).reduce(function(sum,id){return sum+cart[id];},0);
+ var foods=state.menu.filter(function(item){return item.available;});
+ var foodHTML=foods.length?foods.map(function(item){
+  return '<article class="food-card"><div class="food-top"><span class="food-emoji">'+escapeHtml(item.emoji||"🍽")+'</span><span class="price">'+money(item.price)+'</span></div><div style="margin-top:12px"><h3>'+escapeHtml(item.name)+'</h3><p>'+escapeHtml(item.description||"Freshly prepared at the cafe")+'</p></div><div class="food-foot"><span class="small muted">Item #'+item.id+'</span><button class="btn btn-primary btn-sm" data-action="add-cart" data-id="'+item.id+'">＋ Add to order</button></div></article>';
+ }).join(""):'<div class="empty"><div class="empty-icon">🍲</div><h3>No items available</h3><p>Check back when the restaurant updates the menu.</p></div>';
+ var cartHTML=q?renderCart():'<div class="empty"><div class="empty-icon">🛍️</div><h3>Your order is empty</h3><p>Add items from the menu and they will show up here.</p></div>';
+ return '<div class="layout"><section><div class="section-head"><div><h2>Today’s menu</h2><div class="muted small">Only currently available items are shown.</div></div><span class="pill">'+foods.length+' available</span></div><div class="menu-grid">'+foodHTML+'</div></section><aside class="card cart-card"><div class="section-head"><div><div class="eyebrow">Your selection</div><h2>Order basket</h2></div><span class="pill">'+q+' item'+(q===1?"":"s")+'</span></div>'+cartHTML+'</aside></div>';
+}
+function renderCart(){
+ var lines=state.menu.filter(function(item){return cart[item.id]&&cart[item.id]>0;});
+ if(!lines.length)return '<div class="empty"><div class="empty-icon">🛍️</div><h3>Your order is empty</h3><p>Add items from the menu.</p></div>';
+ var total=lines.reduce(function(sum,item){return sum+item.price*cart[item.id];},0);
+ var rows=lines.map(function(item){return '<div class="cart-row"><div><strong>'+escapeHtml(item.name)+'</strong><div class="small muted">'+money(item.price)+' each</div></div><div class="qty"><button aria-label="Remove one '+escapeHtml(item.name)+'" data-action="cart-qty" data-id="'+item.id+'" data-delta="-1">−</button><strong>'+cart[item.id]+'</strong><button aria-label="Add one '+escapeHtml(item.name)+'" data-action="cart-qty" data-id="'+item.id+'" data-delta="1">+</button></div></div>';}).join("");
+ return '<div class="cart-items">'+rows+'</div><form id="checkout-form"><div class="field"><label for="pickup-name">Pickup name</label><input id="pickup-name" name="pickup" required maxlength="70" value="'+escapeHtml(session.name)+'" placeholder="Name for pickup"></div><div class="cart-total"><div class="total-line"><span class="muted">Items subtotal</span><strong>'+money(total)+'</strong></div><div class="total-line"><span class="muted">Taxes / delivery</span><span>₹0</span></div><div class="total-line big"><span>Total</span><span>'+money(total)+'</span></div></div><button class="btn btn-primary" style="width:100%;margin-top:15px" type="submit">Place order · '+money(total)+'</button><p class="form-note">Payment is not collected by this demo.</p></form>';
+}
+function renderStudentOrders(){
+ var orders=state.orders.filter(function(o){return o.studentId===session.id;}).sort(function(a,b){return b.id-a.id;});
+ if(!orders.length)return '<div class="empty"><div class="empty-icon">🧾</div><h3>No orders yet</h3><p>Your orders will appear here after you place one.</p><button class="btn btn-primary" data-action="student-page" data-page="menu">Browse menu</button></div>';
+ return '<section class="card"><div class="section-head"><div><h2>Your order history</h2><p class="muted small">Your order receipts and cancellation status.</p></div><button class="btn btn-sm" data-action="student-page" data-page="menu">＋ New order</button></div><div class="menu-admin-list">'+orders.map(function(o){
+  var status=o.active?'<span class="status">Active</span>':'<span class="status cancelled">Cancelled</span>';
+  return '<article class="admin-menu-row"><div><div class="btn-row" style="align-items:center"><strong>Order #'+o.id+'</strong>'+status+'</div><div style="margin-top:6px">'+o.lines.map(function(line){return escapeHtml(line.name)+' × '+line.qty;}).join(", ")+'</div><div class="small muted" style="margin-top:4px">Pickup: '+escapeHtml(o.customer)+' · '+escapeHtml(o.date||"")+'</div><div style="margin-top:7px;font-weight:900">'+money(o.total)+'</div></div><div class="btn-row">'+(o.active?'<button class="btn btn-danger btn-sm" data-action="cancel-order" data-id="'+o.id+'">Cancel order</button>':'')+'</div></article>';
+ }).join("")+'</div></section>';
+}
+function orderMetrics(){
+ var active=state.orders.filter(function(o){return o.active;});
+ var cancelled=state.orders.filter(function(o){return !o.active;});
+ var revenue=active.reduce(function(sum,o){return sum+Number(o.total||0);},0);
+ return {active:active.length,cancelled:cancelled.length,revenue:revenue,total:state.orders.length,users:Object.keys(state.users).length,items:state.menu.length};
+}
+function renderAdmin(){
+ var panel=adminPage==="menu"?renderAdminMenu():adminPage==="orders"?renderAdminOrders():adminPage==="reports"?renderAdminReports():renderAdminOverview();
+ app.innerHTML='<div class="hero"><div><div class="eyebrow">Restaurant operations</div><h1>Restaurant dashboard</h1><p>Manage your menu and keep track of every order from this browser.</p></div><span class="pill">Admin session</span></div>'+
+ '<div class="demo-banner"><strong>Important:</strong> this is a browser-only demo. The PIN is checked in frontend code and the data lives in local browser storage. Do not use it for real private or payment data.</div>'+
+ '<div class="tabs"><button class="tab '+(adminPage==="overview"?"active":"")+'" data-action="admin-page" data-page="overview">▦ Overview</button><button class="tab '+(adminPage==="menu"?"active":"")+'" data-action="admin-page" data-page="menu">🍽 Manage menu</button><button class="tab '+(adminPage==="orders"?"active":"")+'" data-action="admin-page" data-page="orders">▤ All orders</button><button class="tab '+(adminPage==="reports"?"active":"")+'" data-action="admin-page" data-page="reports">↗ Sales report</button></div>'+panel;
+}
+function statCard(label,value,note){return '<div class="stat"><div class="stat-label">'+label+'</div><div class="stat-value">'+value+'</div><div class="small muted">'+note+'</div></div>';}
+function renderStats(){
+ var m=orderMetrics();
+ return '<div class="stats">'+statCard("Active orders",m.active,"Not cancelled")+statCard("Total revenue",money(m.revenue),"Active orders only")+statCard("All orders",m.total,"Including cancelled")+statCard("Student accounts",m.users,"Registered in this browser")+'</div>';
+}
+function renderAdminOverview(){
+ var recent=state.orders.slice().sort(function(a,b){return b.id-a.id;}).slice(0,6);
+ var recentHTML=recent.length?'<div class="table-wrap"><table><thead><tr><th>Order</th><th>Student</th><th>Pickup</th><th>Total</th><th>Status</th></tr></thead><tbody>'+recent.map(orderTableRow).join("")+'</tbody></table></div>':'<div class="empty"><div class="empty-icon">🧾</div><h3>No orders yet</h3><p>Orders placed by students in this browser will show here.</p></div>';
+ return renderStats()+'<section class="card"><div class="section-head"><div><h2>Recent orders</h2><p class="muted small">The latest orders placed in this browser.</p></div><button class="btn btn-sm" data-action="admin-page" data-page="orders">View all</button></div>'+recentHTML+'</section><section class="card" style="margin-top:18px"><div class="section-head"><div><h2>Menu at a glance</h2><p class="muted small">Control item names, prices and availability.</p></div><button class="btn btn-primary btn-sm" data-action="admin-page" data-page="menu">Manage menu</button></div><div class="menu-admin-list">'+state.menu.slice(0,5).map(function(i){return '<div class="admin-menu-row"><div><strong>'+escapeHtml(i.name)+'</strong><div class="small muted">Item #'+i.id+' · '+money(i.price)+'</div></div>'+(i.available?'<span class="status">Available</span>':'<span class="status off">Unavailable</span>')+'</div>';}).join("")+'</div></section>';
+}
+function renderAdminMenu(){
+ var list=state.menu.slice().sort(function(a,b){return a.id-b.id;});
+ var items=list.length?'<div class="table-wrap"><table><thead><tr><th>Item</th><th>Price</th><th>Status</th><th>Actions</th></tr></thead><tbody>'+list.map(function(i){
+  return '<tr><td><strong>'+escapeHtml(i.emoji||"🍽")+' '+escapeHtml(i.name)+'</strong><div class="small muted">#'+i.id+'</div></td><td>'+money(i.price)+'</td><td>'+(i.available?'<span class="status">Available</span>':'<span class="status off">Unavailable</span>')+'</td><td><div class="btn-row"><button class="btn btn-sm" data-action="edit-item" data-id="'+i.id+'">Edit</button><button class="btn btn-sm" data-action="toggle-item" data-id="'+i.id+'">'+(i.available?"Mark off":"Mark available")+'</button><button class="btn btn-danger btn-sm" data-action="delete-item" data-id="'+i.id+'">Delete</button></div></td></tr>';
+ }).join("")+'</tbody></table></div>':'<div class="empty"><h3>Your menu is empty</h3><p>Add your first food item using the form.</p></div>';
+ var editing=editItemId!==null?state.menu.find(function(i){return i.id===editItemId;}):null;
+ return '<div class="split"><section class="card"><div class="section-head"><div><h2>Food menu</h2><p class="muted small">Changes save automatically in this browser.</p></div><span class="pill">'+state.menu.length+' items</span></div>'+items+'</section>'+
+ '<section class="card"><div class="eyebrow">'+(editing?"Update item":"Add a new item")+'</div><h2 style="margin-top:5px">'+(editing?"Edit menu item":"Create menu item")+'</h2><form id="menu-form" class="form-grid"><input type="hidden" name="id" value="'+(editing?editing.id:"")+'"><div class="field"><label for="menu-name">Food name</label><input id="menu-name" name="name" required maxlength="70" value="'+escapeHtml(editing?editing.name:"")+'" placeholder="e.g. Paneer Roll"></div><div class="field"><label for="menu-price">Price (₹, whole number)</label><input id="menu-price" name="price" type="number" min="1" max="100000" step="1" required value="'+(editing?editing.price:"")+'" placeholder="e.g. 110"></div><div class="field"><label for="menu-description">Short description</label><input id="menu-description" name="description" maxlength="120" value="'+escapeHtml(editing?editing.description||"": "")+'" placeholder="Optional"></div><div class="field"><label for="menu-emoji">Emoji (optional)</label><input id="menu-emoji" name="emoji" maxlength="8" value="'+escapeHtml(editing?editing.emoji||"🍽":"🍽")+'" placeholder="🍽"></div><div class="btn-row"><button class="btn btn-primary" type="submit">'+(editing?"Save changes":"Add item")+'</button>'+(editing?'<button class="btn" type="button" data-action="cancel-edit">Cancel</button>':'')+'</div></form><p class="form-note">New items are available to order immediately. You can mark any item unavailable without deleting it.</p></section></div>';
+}
+function orderTableRow(o){
+ return '<tr><td><strong>#'+o.id+'</strong><div class="small muted">'+escapeHtml(o.date||"")+'</div></td><td>'+escapeHtml(o.studentName||o.studentId)+'<div class="small muted">'+escapeHtml(o.studentId)+'</div></td><td>'+escapeHtml(o.customer)+'</td><td>'+money(o.total)+'</td><td>'+(o.active?'<span class="status">Active</span>':'<span class="status cancelled">Cancelled</span>')+'</td></tr>';
+}
+function renderAdminOrders(){
+ var list=state.orders.slice().sort(function(a,b){return b.id-a.id;});
+ return '<section class="card"><div class="section-head"><div><h2>All orders</h2><p class="muted small">Includes both active and cancelled orders.</p></div><span class="pill">'+list.length+' total</span></div>'+(list.length?'<div class="table-wrap"><table><thead><tr><th>Order</th><th>Student</th><th>Pickup</th><th>Items</th><th>Total</th><th>Status</th></tr></thead><tbody>'+list.map(function(o){return '<tr><td><strong>#'+o.id+'</strong><div class="small muted">'+escapeHtml(o.date||"")+'</div></td><td>'+escapeHtml(o.studentName||o.studentId)+'<div class="small muted">'+escapeHtml(o.studentId)+'</div></td><td>'+escapeHtml(o.customer)+'</td><td>'+o.lines.map(function(l){return escapeHtml(l.name)+' × '+l.qty;}).join("<br>")+'</td><td>'+money(o.total)+'</td><td>'+(o.active?'<span class="status">Active</span>':'<span class="status cancelled">Cancelled</span>')+'</td></tr>';}).join("")+'</tbody></table></div>':'<div class="empty"><div class="empty-icon">📭</div><h3>Nothing to show yet</h3><p>New orders will appear here.</p></div>')+'</section>';
+}
+function renderAdminReports(){
+ var m=orderMetrics();var sold={};var soldUnits=0;
+ state.orders.filter(function(o){return o.active;}).forEach(function(o){o.lines.forEach(function(l){sold[l.name]=(sold[l.name]||0)+l.qty;soldUnits+=l.qty;});});
+ var popularity=Object.keys(sold).sort(function(a,b){return sold[b]-sold[a];});
+ return renderStats()+'<section class="card"><div class="section-head"><div><h2>Sales summary</h2><p class="muted small">Revenue counts active orders only; cancelled orders are excluded.</p></div></div><div class="stats">'+statCard("Items sold",soldUnits,"Units in active orders")+statCard("Cancelled orders",m.cancelled,"Not included in revenue")+statCard("Menu items",m.items,"Current menu size")+statCard("Avg. active order",m.active?money(Math.round(m.revenue/m.active)):money(0),"Revenue ÷ active orders")+'</div><h3>Best-selling items (active orders)</h3>'+(popularity.length?'<div class="menu-admin-list">'+popularity.map(function(name){return '<div class="admin-menu-row"><strong>'+escapeHtml(name)+'</strong><span class="pill">'+sold[name]+' sold</span></div>';}).join("")+'</div>':'<div class="empty"><p>Sales details will appear after active orders are placed.</p></div>')+'</section>';
+}
+function handleClick(event){
+ var btn=event.target.closest("[data-action]");if(!btn)return;
+ var action=btn.getAttribute("data-action");var id=Number(btn.getAttribute("data-id"));
+ if(action==="switch-role"){role=btn.getAttribute("data-role");authMode="login";render();}
+ else if(action==="auth-mode"){authMode=btn.getAttribute("data-mode");render();}
+ else if(action==="logout"){session=null;cart={};editItemId=null;role="student";authMode="login";render();}
+ else if(action==="student-page"){studentPage=btn.getAttribute("data-page");render();}
+ else if(action==="admin-page"){adminPage=btn.getAttribute("data-page");editItemId=null;render();}
+ else if(action==="add-cart"){
+  var item=state.menu.find(function(i){return i.id===id;});if(!item||!item.available){notify("That item is not currently available.");return;}
+  var next=(cart[id]||0)+1;if(next>30){notify("You can order up to 30 of one item.");return;}cart[id]=next;render();
+ }
+ else if(action==="cart-qty"){
+  var delta=Number(btn.getAttribute("data-delta")||0);var next=(cart[id]||0)+delta;
+  if(next<=0)delete cart[id];else if(next<=30)cart[id]=next;else{notify("Maximum quantity is 30 per item.");return;}render();
+ }
+ else if(action==="cancel-order"){
+  var order=state.orders.find(function(o){return o.id===id&&o.studentId===session.id;});
+  if(!order){notify("Order not found.");return;}if(!order.active){notify("This order is already cancelled.");return;}
+  order.active=false;if(saveState()){notify("Order #"+order.id+" cancelled.");render();}
+ }
+ else if(action==="edit-item"){editItemId=id;adminPage="menu";render();}
+ else if(action==="cancel-edit"){editItemId=null;render();}
+ else if(action==="toggle-item"){
+  var itemToToggle=state.menu.find(function(i){return i.id===id;});if(!itemToToggle)return;
+  itemToToggle.available=!itemToToggle.available;
+  if(!itemToToggle.available)delete cart[id];
+  if(saveState()){notify(itemToToggle.name+(itemToToggle.available?" is available.":" marked unavailable."));render();}
+ }
+ else if(action==="delete-item"){
+  var itemToDelete=state.menu.find(function(i){return i.id===id;});if(!itemToDelete)return;
+  if(!window.confirm('Remove "'+itemToDelete.name+'" from the menu? Past receipts will be kept.'))return;
+  state.menu=state.menu.filter(function(i){return i.id!==id;});delete cart[id];if(editItemId===id)editItemId=null;
+  if(saveState()){notify("Menu item removed.");render();}
+ }
+}
+function formValue(form,name){var el=form.elements[name];return el?String(el.value||"").trim():"";}
+function handleSubmit(event){
+ var form=event.target;if(!form||!form.id)return;
+ if(form.id==="register-form"){
+  event.preventDefault();
+  var id=formValue(form,"id");var name=formValue(form,"name");var password=formValue(form,"password");
+  if(!id||!name||password.length<4){notify("Enter a student ID, name and password of at least 4 characters.");return;}
+  if(id.indexOf("|")>=0||name.indexOf("|")>=0){notify("Student ID and name cannot contain | or line breaks.");return;}
+  if(state.users[id.toLowerCase()]){notify("That student ID is already registered.");return;}
+  state.users[id.toLowerCase()]={id:id,name:name,password:password};
+  if(!saveState()){delete state.users[id.toLowerCase()];return;}
+  session={role:"student",id:id.toLowerCase(),name:name};studentPage="menu";cart={};notify("Account created. Welcome to Cafe QuickOrder!");render();
+ }else if(form.id==="login-form"){
+  event.preventDefault();var loginId=formValue(form,"id").toLowerCase();var loginPassword=formValue(form,"password");var user=state.users[loginId];
+  if(!user||user.password!==loginPassword){notify("Student ID or password is incorrect.");return;}
+  session={role:"student",id:loginId,name:user.name};studentPage="menu";cart={};notify("Welcome back, "+user.name.split(" ")[0]+".");render();
+ }else if(form.id==="admin-login-form"){
+  event.preventDefault();
+  if(formValue(form,"pin")!=="1234"){notify("Incorrect demo admin PIN.");return;}
+  session={role:"admin",name:"Restaurant Admin"};adminPage="overview";editItemId=null;notify("Restaurant dashboard opened.");render();
+ }else if(form.id==="checkout-form"){
+  event.preventDefault();var pickup=formValue(form,"pickup");if(!pickup){notify("Enter a pickup name.");return;}
+  var selected=state.menu.filter(function(i){return cart[i.id]>0&&i.available;});
+  if(!selected.length){notify("Your basket is empty or all items became unavailable.");cart={};render();return;}
+  var lines=selected.map(function(i){return {itemId:i.id,name:i.name,price:i.price,qty:cart[i.id]};});
+  var total=lines.reduce(function(sum,l){return sum+l.price*l.qty;},0);
+  var order={id:state.nextOrderId++,studentId:session.id,studentName:session.name,customer:pickup,lines:lines,total:total,active:true,date:new Date().toLocaleString()};
+  state.orders.push(order);
+  if(!saveState()){state.orders.pop();state.nextOrderId--;return;}
+  cart={};studentPage="orders";notify("Order #"+order.id+" placed successfully. Total: "+money(total));render();
+ }else if(form.id==="menu-form"){
+  event.preventDefault();
+  var name=formValue(form,"name");var price=Number(formValue(form,"price"));var description=formValue(form,"description");var emoji=formValue(form,"emoji")||"🍽";
+  if(!name||!Number.isInteger(price)||price<1||price>100000){notify("Enter a food name and a whole-number price between ₹1 and ₹100,000.");return;}
+  if(name.indexOf("|")>=0){notify("Food name cannot contain | or line breaks.");return;}
+  var itemId=Number(formValue(form,"id"));
+  if(itemId){
+   var existing=state.menu.find(function(i){return i.id===itemId;});if(!existing){notify("Menu item no longer exists.");editItemId=null;render();return;}
+   existing.name=name;existing.price=price;existing.description=description;existing.emoji=emoji;notify("Menu item updated.");
+  }else{
+   var newId=state.menu.reduce(function(max,i){return Math.max(max,i.id);},0)+1;
+   state.menu.push({id:newId,name:name,price:price,description:description,emoji:emoji,available:true});notify("Menu item added as #"+newId+".");
+  }
+  if(saveState()){editItemId=null;render();}else render();
+ }
+}
+app.addEventListener("click",handleClick);
+app.addEventListener("submit",handleSubmit);
+render();
+})();
+</script>
+</body>
+</html>
