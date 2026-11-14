@@ -1,0 +1,17 @@
+# Compiled programs and build output
+bin/
+*.o
+*.out
+
+# Runtime data may include student names and orders
+students_data.txt
+restaurant_data.txt
+menu_data.txt
+
+# Runtime logs
+*.log
+
+# Editor / operating system files
+.DS_Store
+.vscode/
+.idea/

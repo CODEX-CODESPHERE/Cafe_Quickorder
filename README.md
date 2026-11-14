@@ -1,110 +1,112 @@
-# Cafe QuickOrder — Networked C++ Terminal Project
+# Cafe QuickOrder — Beginner-Friendly C++ Networking Project
 
-A terminal-only C++17 client/server application. It contains **two independent servers**:
-- **Restaurant Server** (`restaurant_server`): owns the menu, orders, cancellations, item availability and sales report.
-- **Student Server** (`student_server`): registers/authenticates students and forwards their menu/order requests to the Restaurant Server over TCP networking.
+Cafe QuickOrder is a **terminal-only C++17 project** for a first programming/networking project. It uses simple structures, vectors, functions, file handling, TCP sockets, and threads. **It does not use a priority queue.**
 
-There are also two terminal clients:
-- `student_client`: student registration, login, menu, placing orders, viewing/cancelling their own orders.
-- `restaurant_admin`: restaurant operator menu, all orders, sales report and item availability.
+## What is included?
 
-No GUI, web framework, external database, or third-party library is used. Data is persisted in text files beside the server executables.
+- **Restaurant Server** (restaurant_server.cpp): keeps the food menu and orders, calculates bills, handles cancellations, and prepares a sales report.
+- **Student Server** (student_server.cpp): registers students, checks login details, and forwards student requests to the Restaurant Server over TCP.
+- **Student Client** (student_client.cpp): lets a student register, log in, view the menu, place an order, see their orders, and cancel an order.
+- **Restaurant Admin** (restaurant_admin.cpp): lets the restaurant operator view the menu, see all orders, view sales, and change whether a food item is available.
+- **net.hpp**: small helper functions for sending and receiving text messages over TCP.
+- **Text files**: keep student accounts, menu availability, and orders between program runs.
+
+No GUI, web framework, external database, or third-party C++ library is required.
 
 ## Requirements
+
 - macOS or Linux
-- C++17 compiler (`clang++` on macOS or `g++` on Linux)
-- Both servers must be able to reach each other over TCP.
+- A C++17 compiler (clang++ on macOS or g++ on Linux)
+- Python 3 only if you want to run the automated test
 
-## Build (macOS / Linux)
-Open Terminal in this project folder:
+## Easiest way to run both Student and Restaurant
 
-```bash
-chmod +x build.sh
-./build.sh
-```
+Open Terminal in the project folder and run:
 
-This creates four executables in `bin/`.
+~~~bash
+chmod +x run_local.sh
+./run_local.sh
+~~~
 
-## Run locally (3 Terminal windows)
-**Terminal 1 — restaurant server**
-```bash
+The script builds the programs (if needed), starts both servers, and displays a small terminal menu:
+
+~~~text
+1. Open Student Terminal
+2. Open Restaurant Admin Terminal
+0. Stop both servers and exit
+~~~
+
+Choose 1 to use the student side or 2 to use the restaurant side. Both servers stay running while you return to this menu. Choose 0 to stop the servers.
+
+The demo restaurant admin PIN is **1234**. It is checked by the Restaurant Server. For a classroom exercise, you can change ADMIN_PIN near the top of restaurant_server.cpp and rebuild.
+
+## Manual run in separate Terminal windows
+
+Build the programs first:
+
+~~~bash
+sh ./build.sh
+~~~
+
+Then open separate terminal windows and run each command from the project folder.
+
+**Window 1 — Restaurant Server**
+
+~~~bash
 ./bin/restaurant_server 5001
-```
+~~~
 
-**Terminal 2 — student server** (connects to restaurant server)
-```bash
+**Window 2 — Student Server**
+
+~~~bash
 ./bin/student_server 5002 127.0.0.1 5001
-```
+~~~
 
-**Terminal 3 — student client**
-```bash
+**Window 3 — Student Client**
+
+~~~bash
 ./bin/student_client 127.0.0.1 5002
-```
+~~~
 
-To operate the restaurant/admin side, open a fourth terminal:
-```bash
+**Window 4 — Restaurant Admin**
+
+~~~bash
 ./bin/restaurant_admin 127.0.0.1 5001
-```
+~~~
 
-## Run on two different computers
-1. Start `restaurant_server` on the restaurant computer:
-   `./bin/restaurant_server 5001`
-2. Find that computer's LAN IP address. Ensure TCP port `5001` is allowed through its firewall.
-3. Start the student server on the student-side computer and give it the restaurant computer's IP:
-   `./bin/student_server 5002 RESTAURANT_LAN_IP 5001`
-4. Students connect to the student server computer's IP:
-   `./bin/student_client STUDENT_SERVER_LAN_IP 5002`
-5. Restaurant staff connect admin terminal to restaurant server:
-   `./bin/restaurant_admin RESTAURANT_LAN_IP 5001`
+Register a student first, then log in. The student connection stays open while the student uses the menu.
 
-Both machines must be on a network that permits direct TCP connections. Do not expose these ports directly to the public internet; use a trusted LAN or VPN.
+## Run across two computers on a local network
 
-## Verify the project
-After building, run the automated end-to-end test:
+1. On the restaurant computer, build the project and start **./bin/restaurant_server 5001**.
+2. Find the restaurant computer's local IP address. Allow TCP port 5001 through its firewall for your trusted local network.
+3. On the student-side computer, start the Student Server and point it to the restaurant computer's IP: **./bin/student_server 5002 RESTAURANT_LAN_IP 5001**.
+4. Student clients connect to the student-side computer: **./bin/student_client STUDENT_SERVER_LAN_IP 5002**.
+5. Restaurant staff can run the admin client from a computer that can reach the restaurant server: **./bin/restaurant_admin RESTAURANT_LAN_IP 5001**.
 
-```bash
+Replace the IP placeholders with the actual local IP addresses. Both computers must be on a network that allows direct TCP connections. Do not expose these ports to the public internet.
+
+## Test the project
+
+Build and run the automated integration test:
+
+~~~bash
+sh ./build.sh
 python3 test_network.py
-```
+~~~
 
-The test starts both servers on temporary ports and checks registration, login, menu retrieval, network order placement, bill total, student order privacy, cancellation, sales report, and persistence after a server restart. It uses temporary data files and does not overwrite your real project data.
-
-## Features
-- Student registration with unique student ID and login.
-- Password values are hashed before being stored (standard-library `std::hash`; suitable only for a classroom demo, not production authentication).
-- Restaurant menu with item IDs, prices and availability.
-- Multi-item order placement and automatic total calculation.
-- Each order is linked to the authenticated student.
-- Students can view only their own orders and cancel their own active orders.
-- Restaurant admin can view every order, sales totals and update item availability.
-- Concurrent client handling using one thread per TCP connection.
-- Restaurant orders and student accounts persist after server restart.
-
-## How the two-server network works
-
-```text
-Student terminal client
-        |
-        | TCP (port 5002)
-        v
-Student Server  -------- TCP (port 5001) --------> Restaurant Server
-  - register/login                                  - menu and prices
-  - student identity                                - order records
-  - student order history                           - cancellation status
-                                                     - sales report
-
-Restaurant admin terminal ------------------------> Restaurant Server
-```
-
-The Student Server is the gateway for student accounts and forwards allowed order operations to the Restaurant Server. Restaurant administration connects directly to the Restaurant Server.
-
-## Network protocol
-TCP, newline-delimited text messages. Student clients connect only to the Student Server. The Student Server forwards restaurant operations to the Restaurant Server.
+The test uses temporary data files and temporary ports. It checks both servers, student registration/login, menu retrieval, order totals, cancellation, admin PIN validation, menu availability changes, and data persistence after restarting servers. It does not modify your normal project data files.
 
 ## Data files
-- `students_data.txt` — created by the Student Server.
-- `restaurant_data.txt` — created by the Restaurant Server.
 
-Keep these files with their respective server executable/current working directory. Back them up before deleting or moving the project.
+The servers create these text files in their **current working directory**:
 
-## Important limitations
-This is a functional educational LAN prototype, not a production payment or security system. It has no payment gateway, TLS encryption, password salting/slow hashing, database server, password reset, or administrator authorization. Use trusted networks only. `std::hash` is not a secure password-storage algorithm. Add TLS and a dedicated password hashing library (Argon2/bcrypt/scrypt) before real deployment.
+- students_data.txt — student account records
+- menu_data.txt — menu and availability
+- restaurant_data.txt — orders and cancellation status
+
+When started with run_local.sh, they are created in the project folder. These local data files are excluded from Git by .gitignore because they may contain names and order records.
+
+## Important classroom-demo limitations
+
+This is an educational LAN project, not a production ordering or payment system. Messages are plain text over TCP. The default admin PIN (1234) is only for demonstrating the feature and should be changed for a class demo. Student passwords are hashed with the C++ standard library's std::hash; that is not secure password storage for real accounts. Use the project only on a trusted network.
