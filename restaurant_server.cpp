@@ -163,6 +163,42 @@ string handle(const string& command) {
             }
             return "ERR|Item not found";
         }
+        if (action == "ADD" && p.size() == 5) {
+            string name = cleanField(p[3]);
+            int price;
+            try { price = stoi(p[4]); } catch (...) { return "ERR|Price must be a whole number"; }
+            if (name.empty() || price <= 0) return "ERR|Enter a food name and a price greater than zero";
+            int id = 1;
+            for (const auto& item : menu) id = max(id, item.id + 1);
+            menu.push_back({id, name, price, true});
+            saveMenu();
+            return "OK|Food item added with ID " + to_string(id);
+        }
+        if (action == "EDIT" && p.size() == 6) {
+            int id, price;
+            try { id = stoi(p[3]); price = stoi(p[5]); }
+            catch (...) { return "ERR|Item ID and price must be whole numbers"; }
+            string name = cleanField(p[4]);
+            if (name.empty() || price <= 0) return "ERR|Enter a food name and a price greater than zero";
+            for (auto& item : menu) {
+                if (item.id == id) {
+                    item.name = name;
+                    item.price = price;
+                    saveMenu();
+                    return "OK|Food item updated and saved";
+                }
+            }
+            return "ERR|Item not found";
+        }
+        if (action == "REMOVE" && p.size() == 4) {
+            int id;
+            try { id = stoi(p[3]); } catch (...) { return "ERR|Invalid item ID"; }
+            auto item = find_if(menu.begin(), menu.end(), [id](const Item& x) { return x.id == id; });
+            if (item == menu.end()) return "ERR|Item not found";
+            menu.erase(item);
+            saveMenu();
+            return "OK|Food item removed and saved";
+        }
         return "ERR|Unknown admin command";
     }
 
