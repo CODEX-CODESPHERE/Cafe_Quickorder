@@ -24,7 +24,7 @@ No GUI, web framework, external database, or third-party C++ library is required
 Open Terminal in the project folder and run:
 
 ~~~bash
-chmod +x build.sh run_local.sh
+chmod +x run_local.sh
 ./run_local.sh
 ~~~
 
@@ -42,10 +42,10 @@ The demo restaurant admin PIN is **1234**. It is checked by the Restaurant Serve
 
 ## Manual run in separate Terminal windows
 
-First build the programs:
+Build the programs first:
 
 ~~~bash
-./build.sh
+sh ./build.sh
 ~~~
 
 Then open separate terminal windows and run each command from the project folder.
@@ -91,7 +91,7 @@ Replace the IP placeholders with the actual local IP addresses. Both computers m
 Build and run the automated integration test:
 
 ~~~bash
-./build.sh
+sh ./build.sh
 python3 test_network.py
 ~~~
 
