@@ -1,0 +1,13 @@
+# Compiled programs
+bin/
+*.o
+*.out
+
+# Local runtime data (may contain student names/orders)
+students_data.txt
+restaurant_data.txt
+
+# Editor / operating system files
+.DS_Store
+.vscode/
+.idea/
