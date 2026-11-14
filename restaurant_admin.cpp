@@ -26,6 +26,9 @@ int main(int argc, char** argv) {
              << "2 View all orders\n"
              << "3 Sales report\n"
              << "4 Update food availability\n"
+             << "5 Add food item\n"
+             << "6 Edit food name and price\n"
+             << "7 Remove food item\n"
              << "0 Exit\nChoice: ";
         string choice;
         getline(cin, choice);
@@ -38,6 +41,21 @@ int main(int argc, char** argv) {
             cout << "Item ID: "; getline(cin, id);
             cout << "Available? (1=yes, 0=no): "; getline(cin, available);
             action = "AVAIL|" + cleanField(id) + "|" + cleanField(available);
+        } else if (choice == "5") {
+            string name, price;
+            cout << "New food name: "; getline(cin, name);
+            cout << "Price in rupees: "; getline(cin, price);
+            action = "ADD|" + cleanField(name) + "|" + cleanField(price);
+        } else if (choice == "6") {
+            string id, name, price;
+            cout << "Item ID to edit: "; getline(cin, id);
+            cout << "New food name: "; getline(cin, name);
+            cout << "New price in rupees: "; getline(cin, price);
+            action = "EDIT|" + cleanField(id) + "|" + cleanField(name) + "|" + cleanField(price);
+        } else if (choice == "7") {
+            string id;
+            cout << "Item ID to remove: "; getline(cin, id);
+            action = "REMOVE|" + cleanField(id);
         } else if (choice == "0") break;
         else { cout << "Invalid choice. Try again.\n"; continue; }
 
