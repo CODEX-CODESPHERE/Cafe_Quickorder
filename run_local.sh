@@ -5,7 +5,7 @@ cd "$ROOT"
 
 if [ ! -x bin/restaurant_server ] || [ ! -x bin/student_server ] || \
    [ ! -x bin/student_client ] || [ ! -x bin/restaurant_admin ]; then
-    ./build.sh
+    sh ./build.sh
 fi
 
 RESTAURANT_LOG="$ROOT/restaurant_server.log"
