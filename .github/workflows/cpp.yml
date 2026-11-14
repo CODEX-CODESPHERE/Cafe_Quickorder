@@ -1,0 +1,16 @@
+name: Build and test Cafe QuickOrder
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out project
+        uses: actions/checkout@v4
+      - name: Build C++ programs
+        run: ./build.sh
+      - name: Run network test
+        run: python3 test_network.py
