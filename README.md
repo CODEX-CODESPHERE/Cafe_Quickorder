@@ -7,7 +7,7 @@ Cafe QuickOrder is a **terminal-only C++17 project** for a first programming/net
 - **Restaurant Server** (restaurant_server.cpp): keeps the food menu and orders, calculates bills, handles cancellations, and prepares a sales report.
 - **Student Server** (student_server.cpp): registers students, checks login details, and forwards student requests to the Restaurant Server over TCP.
 - **Student Client** (student_client.cpp): lets a student register, log in, view the menu, place an order, see their orders, and cancel an order.
-- **Restaurant Admin** (restaurant_admin.cpp): lets the restaurant operator view the menu, see all orders, view sales, and change whether a food item is available.
+- **Restaurant Admin** (restaurant_admin.cpp): lets the restaurant operator view the menu, see all orders, view sales, change availability, add food items, edit names/prices, and remove food items.
 - **net.hpp**: small helper functions for sending and receiving text messages over TCP.
 - **Text files**: keep student accounts, menu availability, and orders between program runs.
 
@@ -95,7 +95,7 @@ sh ./build.sh
 python3 test_network.py
 ~~~
 
-The test uses temporary data files and temporary ports. It checks both servers, student registration/login, menu retrieval, order totals, cancellation, admin PIN validation, menu availability changes, and data persistence after restarting servers. It does not modify your normal project data files.
+The test uses temporary data files and temporary ports. It checks both servers, student registration/login, menu retrieval, order totals, cancellation, admin PIN validation, menu availability changes, adding/editing/removing menu items, input validation, and data persistence after restarting servers. It does not modify your normal project data files.
 
 ## Data files
 
