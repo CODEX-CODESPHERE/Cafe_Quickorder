@@ -41,7 +41,8 @@ function click(action, attrs = {}) {
   const button = {
     getAttribute(name) {
       if (name === "data-action") return action;
-      return Object.prototype.hasOwnProperty.call(attrs, name) ? String(attrs[name]) : null;
+      const key = name.indexOf("data-") === 0 ? name.slice(5) : name;
+      return Object.prototype.hasOwnProperty.call(attrs, key) ? String(attrs[key]) : null;
     }
   };
   listeners["app:click"]({ target: { closest(selector) { return selector === "[data-action]" ? button : null; } } });
