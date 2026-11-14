@@ -74,7 +74,7 @@ def start_student(port, restaurant_port, temp_dir):
 
 def main():
     if not os.path.exists(os.path.join(BIN, "restaurant_server")):
-        subprocess.run(["./build.sh"], cwd=ROOT, check=True)
+        subprocess.run(["sh", "./build.sh"], cwd=ROOT, check=True)
 
     tag = uuid.uuid4().hex[:7]
     student_id = "TEST" + tag
