@@ -210,7 +210,7 @@ function handleSubmit(event){
   event.preventDefault();
   var id=formValue(form,"id");var name=formValue(form,"name");var password=formValue(form,"password");
   if(!id||!name||password.length<4){notify("Enter a student ID, name and password of at least 4 characters.");return;}
-  if(/[|\\r\\n]/.test(id)||/[|\\r\\n]/.test(name)){notify("Student ID and name cannot contain | or line breaks.");return;}
+  if(id.indexOf("|")>=0||name.indexOf("|")>=0){notify("Student ID and name cannot contain | or line breaks.");return;}
   if(state.users[id.toLowerCase()]){notify("That student ID is already registered.");return;}
   state.users[id.toLowerCase()]={id:id,name:name,password:password};
   if(!saveState()){delete state.users[id.toLowerCase()];return;}
@@ -237,7 +237,7 @@ function handleSubmit(event){
   event.preventDefault();
   var name=formValue(form,"name");var price=Number(formValue(form,"price"));var description=formValue(form,"description");var emoji=formValue(form,"emoji")||"🍽";
   if(!name||!Number.isInteger(price)||price<1||price>100000){notify("Enter a food name and a whole-number price between ₹1 and ₹100,000.");return;}
-  if(/[|\\r\\n]/.test(name)){notify("Food name cannot contain | or line breaks.");return;}
+  if(name.indexOf("|")>=0){notify("Food name cannot contain | or line breaks.");return;}
   var itemId=Number(formValue(form,"id"));
   if(itemId){
    var existing=state.menu.find(function(i){return i.id===itemId;});if(!existing){notify("Menu item no longer exists.");editItemId=null;render();return;}
