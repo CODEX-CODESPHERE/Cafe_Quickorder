@@ -1,8 +1,16 @@
-# Cafe QuickOrder — Beginner-Friendly C++ Networking Project
+# Cafe QuickOrder — Browser Demo + Beginner-Friendly C++ Networking Project
 
-Cafe QuickOrder is a **terminal-only C++17 project** for a first programming/networking project. It uses simple structures, vectors, functions, file handling, TCP sockets, and threads. **It does not use a priority queue.**
+Cafe QuickOrder now has **two versions**: a browser app for trying the student and restaurant menus without installing anything, and the original C++17 TCP networking project for learning sockets, threads, file handling, and client/server programming. The C++ project does not use a priority queue.
 
-## What is included?
+## Use the browser app (no PC terminal)
+
+After the GitHub Pages deployment workflow succeeds, open **https://codex-codesphere.github.io/Cafe_Quickorder/** in a browser. Use the Student screen to register, log in, browse food, build a basket, place/cancel orders, and view order history. Use Restaurant Admin with demo PIN **1234** to add, edit, remove, or disable menu items and view orders/reports.
+
+The first deployment is handled by `.github/workflows/pages.yml`. Deployment status appears in the [GitHub Actions tab](https://github.com/CODEX-CODESPHERE/Cafe_Quickorder/actions).
+
+**Important browser-demo limitation:** GitHub Pages is static hosting. This browser app saves data in the current browser's local storage, so it does not synchronize data between different devices or users and does not connect to the C++ TCP servers. Its demo admin PIN and stored passwords are not secure for real use. The C++ client/server version below is a separate local/LAN program.
+
+## What is included in the C++ version?
 
 - **Restaurant Server** (restaurant_server.cpp): keeps the food menu and orders, calculates bills, handles cancellations, and prepares a sales report.
 - **Student Server** (student_server.cpp): registers students, checks login details, and forwards student requests to the Restaurant Server over TCP.
